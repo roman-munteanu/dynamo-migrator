@@ -1,6 +1,8 @@
 dynamo-migrator
 -----
 
+This project does an asynchronous migration of data from one DynamoDB table to another.
+
 ## Build and Run
 
 Build:
@@ -103,4 +105,16 @@ aws dynamodb scan \
     --filter-expression "platform = :platform" \
     --expression-attribute-values '{":platform": {"S":"ios"}}' \
     --endpoint-url=http://localhost:4566
+```
+
+delete table:
+```
+aws dynamodb delete-table --table-name UsersTarget --endpoint-url=http://localhost:4566 
+```
+
+count:
+```
+aws dynamodb scan --table-name UsersOriginal --select COUNT --endpoint-url=http://localhost:4566
+
+aws dynamodb scan --table-name UsersTarget --select COUNT --endpoint-url=http://localhost:4566
 ```
