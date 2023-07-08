@@ -21,6 +21,7 @@ const (
 	theRegion       = "us-west-2"
 	numberOfWorkers = 4
 	batchSize = 2
+	platformParam = "ios"
 )
 
 type App struct {
@@ -81,9 +82,7 @@ func main() {
 		})
 	}
 
-	platform := "ios"
-
-	items, err := app.readItems(platform)
+	items, err := app.readItems(platformParam)
 	if err != nil {
 		panic(err)
 	}
@@ -96,16 +95,16 @@ func main() {
 		})
 	}
 
-	go app.sendRequests(app.ctx, workRequests, requestsCh)
+	go app.sendRequests(workRequests, requestsCh)
 
 	for _, worker := range workers {
 		app.wg.Add(1)
-		go app.processRequests(app.ctx, worker, requestsCh)
+		go app.processRequests(worker, requestsCh)
 	}
 
 	app.wg.Wait()
 
-	app.scanTarget()
+	app.readTarget()
 }
 
 func (a *App) readItems(platform string) ([]map[string]types.AttributeValue, error) {
@@ -133,23 +132,23 @@ func (a *App) readItems(platform string) ([]map[string]types.AttributeValue, err
 	return items, nil
 }
 
-func (a *App) sendRequests(ctx context.Context, requests []model.WorkRequest, reqCh chan model.WorkRequest) {
+func (a *App) sendRequests(requests []model.WorkRequest, reqCh chan model.WorkRequest) {
 	defer close(reqCh)
 
 	for _, req := range requests {
 		select {
-		case <-ctx.Done():
+		case <-a.ctx.Done():
 			return
 		case reqCh <- req:
 		}
 	}
 }
 
-func (a *App) processRequests(ctx context.Context, worker workHandler, reqCh chan model.WorkRequest) {
+func (a *App) processRequests(worker workHandler, reqCh chan model.WorkRequest) {
 	defer a.wg.Done()
 
 	for req := range reqCh {
-		err := worker.Execute(ctx, req)
+		err := worker.Execute(a.ctx, req)
 		if err != nil {
 			log.Fatalln(err)
 			a.cancel()
@@ -180,7 +179,7 @@ func (a *App) scanInput(platform string) (*dynamodb.ScanInput, error) {
 	}, nil
 }
 
-func (a *App) scanTarget() {
+func (a *App) readTarget() {
 	var items []model.UserDetails
 
 	resp, err := a.client.Scan(a.ctx, &dynamodb.ScanInput{

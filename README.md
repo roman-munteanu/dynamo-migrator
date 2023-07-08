@@ -62,7 +62,17 @@ aws dynamodb list-tables --endpoint-url=http://localhost:4566
 ```
 
 
-add items:
+populate original table:
+```
+aws dynamodb batch-write-item \
+    --request-items file://data-test.json \
+    --return-consumed-capacity INDEXES \
+    --return-item-collection-metrics SIZE \
+    --endpoint-url=http://localhost:4566
+```
+
+
+or add each item:
 ```
 aws dynamodb put-item \
     --table-name UsersOriginal \
@@ -109,6 +119,8 @@ aws dynamodb scan \
 
 delete table:
 ```
+aws dynamodb delete-table --table-name UsersOriginal --endpoint-url=http://localhost:4566 
+
 aws dynamodb delete-table --table-name UsersTarget --endpoint-url=http://localhost:4566 
 ```
 

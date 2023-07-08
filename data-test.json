@@ -1,0 +1,121 @@
+{
+    "UsersOriginal": [
+        {
+            "PutRequest": {
+                "Item": {
+                    "user_id": {"N":  "101"},
+                    "platform": {"S":  "android"},
+                    "name": {"S":  "Name 101"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "user_id": {"N":  "102"},
+                    "platform": {"S":  "ios"},
+                    "name": {"S":  "Name 102"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "user_id": {"N":  "103"},
+                    "platform": {"S":  "android"},
+                    "name": {"S":  "Name 103"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "user_id": {"N":  "104"},
+                    "platform": {"S":  "ios"},
+                    "name": {"S":  "Name 104"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "user_id": {"N":  "105"},
+                    "platform": {"S":  "ios"},
+                    "name": {"S":  "Name 105"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "user_id": {"N":  "106"},
+                    "platform": {"S":  "ios"},
+                    "name": {"S":  "Name 106"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "user_id": {"N":  "107"},
+                    "platform": {"S":  "ios"},
+                    "name": {"S":  "Name 107"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "user_id": {"N":  "108"},
+                    "platform": {"S":  "ios"},
+                    "name": {"S":  "Name 108"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "user_id": {"N":  "109"},
+                    "platform": {"S":  "ios"},
+                    "name": {"S":  "Name 109"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "user_id": {"N":  "110"},
+                    "platform": {"S":  "ios"},
+                    "name": {"S":  "Name 110"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "user_id": {"N":  "111"},
+                    "platform": {"S":  "ios"},
+                    "name": {"S":  "Name 111"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "user_id": {"N":  "112"},
+                    "platform": {"S":  "ios"},
+                    "name": {"S":  "Name 112"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "user_id": {"N":  "113"},
+                    "platform": {"S":  "ios"},
+                    "name": {"S":  "Name 113"}
+                }
+            }
+        }
+    ]
+}
